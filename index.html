@@ -3,29 +3,77 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Let chance choose your next activity.">
 
-    <title>What Should I Do?</title>
+    <title>What Should I Do? | Activity Picker</title>
 
     <link rel="stylesheet" href="src/style.css">
     <script src="src/script.js" defer></script>
 </head>
-
 <body>
-    <main class="picker">
-        <p class="eyebrow">ACTIVITY PICKER</p>
+    <main class="app">
+        <section class="card picker" aria-labelledby="page-title">
+            <p class="eyebrow">Activity picker</p>
 
-        <h1>What should I do? 🎲</h1>
+            <h1 id="page-title">What should I do? 🎲</h1>
 
-        <p class="description">
-            Can't decide? Let chance choose your next activity.
-        </p>
+            <p class="description">
+                Can't decide? Let chance choose your next activity.
+            </p>
 
-        <div class="result" aria-live="polite">
-            <p>Your next activity</p>
-            <h2 id="activity-result">Ready when you are.</h2>
-        </div>
+            <div class="result" aria-live="polite">
+                <p>Your next activity</p>
+                <h2 id="activity-result">Ready when you are.</h2>
+            </div>
 
-        <button id="pick-button" type="button">Pick for me</button>
+            <button id="pick-button" class="pick-button" type="button">
+                Pick for me
+            </button>
+        </section>
+
+        <section class="card activities-card" aria-labelledby="activities-title">
+            <div class="list-heading">
+                <div>
+                    <p class="eyebrow">Make it yours</p>
+                    <h2 id="activities-title">Activities</h2>
+                </div>
+
+                <span id="activity-count" class="count" aria-label="5 activities">
+                    5
+                </span>
+            </div>
+
+            <p class="description">
+                Add your own ideas or remove ones you don't want.
+            </p>
+
+            <ul id="activity-list" class="activity-list"></ul>
+
+            <form id="activity-form" class="activity-form">
+                <label for="new-activity">New activity</label>
+
+                <div class="input-row">
+                    <input
+                        id="new-activity"
+                        name="activity"
+                        type="text"
+                        maxlength="80"
+                        placeholder="e.g. Try a new recipe"
+                        required
+                    >
+
+                    <button type="submit" class="add-button">
+                        Add
+                    </button>
+                </div>
+
+                <p id="form-message" class="form-message" role="status"></p>
+            </form>
+
+            <p class="save-note">
+                Your changes last until you refresh the page.
+            </p>
+        </section>
     </main>
 </body>
 </html>

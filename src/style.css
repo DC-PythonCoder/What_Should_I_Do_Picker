@@ -1,4 +1,3 @@
-/* Include padding and borders in each element's total width. */
 * {
     box-sizing: border-box;
 }
@@ -6,7 +5,7 @@
 body {
     margin: 0;
     min-height: 100vh;
-    padding: 24px;
+    padding: 32px;
 
     display: grid;
     place-items: center;
@@ -16,26 +15,37 @@ body {
     font-family: Arial, sans-serif;
 }
 
-.picker {
+.app {
     width: 100%;
-    max-width: 520px;
-    padding: 40px;
+    max-width: 1120px;
 
-    background: #142435;
-    border: 1px solid #304052;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 24px;
+    align-items: start;
+}
+
+.card {
+    padding: 40px;
+    background: #19293a;
+    border: 1px solid #364759;
     border-radius: 24px;
 }
 
 .eyebrow {
+    margin: 0 0 28px;
     color: #8ce9c5;
+
     font-size: 12px;
     font-weight: bold;
     letter-spacing: 3px;
+    text-transform: uppercase;
 }
 
 h1 {
-    font-size: clamp(32px, 7vw, 46px);
-    line-height: 1.1;
+    margin: 0 0 24px;
+    font-size: clamp(32px, 4vw, 46px);
+    line-height: 1.2;
 }
 
 .description {
@@ -44,54 +54,210 @@ h1 {
 }
 
 .result {
+    min-height: 150px;
     margin: 32px 0 24px;
     padding: 24px;
-    min-height: 150px;
 
-    background: #0c1725;
-    border: 1px dashed #51677c;
+    background: #101c2a;
+    border: 1px dashed #607186;
     border-radius: 16px;
 }
 
 .result p {
-    margin-top: 0;
+    margin: 0;
     color: #b1bdc9;
     font-size: 14px;
 }
 
 .result h2 {
-    margin-bottom: 0;
+    margin: 20px 0 0;
     font-size: 26px;
     overflow-wrap: anywhere;
 }
 
 button {
+    font: inherit;
+    cursor: pointer;
+}
+
+.pick-button {
     width: 100%;
     padding: 18px;
 
     background: #8ce9c5;
     color: #102b29;
-    border: none;
+    border: 0;
     border-radius: 12px;
 
     font-size: 18px;
     font-weight: bold;
-    cursor: pointer;
-
-    transition: background 0.2s;
 }
 
-button:hover {
+.pick-button:hover,
+.add-button:hover {
     background: #b0f5db;
 }
 
-button:focus-visible {
+.pick-button:disabled {
+    background: #526e69;
+    color: #d7e0dd;
+    cursor: not-allowed;
+}
+
+.list-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+}
+
+.list-heading .eyebrow {
+    margin-bottom: 12px;
+}
+
+.list-heading h2 {
+    margin: 0;
+    font-size: 30px;
+}
+
+.count {
+    min-width: 36px;
+    padding: 6px 10px;
+
+    background: #2b4a48;
+    color: #8ce9c5;
+    border-radius: 999px;
+
+    font-weight: bold;
+    text-align: center;
+}
+
+.activity-list {
+    padding: 0;
+    margin: 28px 0;
+    list-style: none;
+}
+
+.activity-list li {
+    min-height: 58px;
+    padding: 10px 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+
+    border-bottom: 1px solid #364759;
+}
+
+.activity-list li:first-child {
+    border-top: 1px solid #364759;
+}
+
+.activity-name {
+    overflow-wrap: anywhere;
+}
+
+.remove-button {
+    flex-shrink: 0;
+    padding: 8px 12px;
+
+    background: transparent;
+    color: #b1bdc9;
+    border: 1px solid #607186;
+    border-radius: 8px;
+
+    font-size: 14px;
+}
+
+.remove-button:hover {
+    color: #ffb8b8;
+    border-color: #ffb8b8;
+}
+
+.empty-message {
+    color: #b1bdc9;
+}
+
+.activity-form label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.input-row {
+    display: flex;
+    gap: 10px;
+}
+
+.input-row input {
+    width: 100%;
+    min-width: 0;
+    padding: 14px;
+
+    background: #101c2a;
+    color: #f5f5eb;
+    border: 1px solid #607186;
+    border-radius: 10px;
+
+    font: inherit;
+}
+
+.input-row input::placeholder {
+    color: #9aa9b9;
+}
+
+.add-button {
+    padding: 12px 20px;
+
+    background: #8ce9c5;
+    color: #102b29;
+    border: 0;
+    border-radius: 10px;
+
+    font-weight: bold;
+}
+
+.form-message {
+    min-height: 21px;
+    margin: 8px 0 0;
+    color: #f6cc6e;
+    font-size: 14px;
+}
+
+.save-note {
+    margin: 18px 0 0;
+    color: #b1bdc9;
+    font-size: 13px;
+}
+
+button:focus-visible,
+input:focus-visible {
     outline: 3px solid #f6cc6e;
-    outline-offset: 4px;
+    outline-offset: 3px;
+}
+
+@media (max-width: 760px) {
+    body {
+        display: block;
+        padding: 24px;
+    }
+
+    .app {
+        grid-template-columns: 1fr;
+    }
 }
 
 @media (max-width: 480px) {
-    .picker {
+    body {
+        padding: 16px;
+    }
+
+    .card {
         padding: 24px;
+    }
+
+    .input-row {
+        flex-direction: column;
     }
 }
